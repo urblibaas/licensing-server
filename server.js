@@ -31,12 +31,20 @@ const authorizedStores = [
 // Route
 app.post("/api/validate", (req, res) => {
   const { shop } = req.body;
+  const baseUrl = "https://licensing-server-six.vercel.app";
 
   if (authorizedStores.includes(shop)) {
-    return res.status(200).json({ valid: true });
+    return res.status(200).json({
+      valid: true,
+      // Send the URL to the CSS file only if authorized
+      css_url: `${baseUrl}/css/base.css`,
+    });
   }
 
-  return res.status(403).json({ valid: false });
+  return res.status(403).json({
+    valid: false,
+    message: "License invalid",
+  });
 });
 
 // IMPORTANT: export for Vercel
