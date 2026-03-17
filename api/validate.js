@@ -22,7 +22,11 @@ module.exports = async (req, res) => {
   const { shop } = req.body;
 
   // 2. Mock Database (Replace with your actual store domains)
-  const authorizedStores = ["your-development-store.myshopify.com", "client-store.myshopify.com"];
+  const authorizedStores = [
+    "your-development-store.myshopify.com",
+    "urblibaas.myshopify.com",
+    "client-store.myshopify.com",
+  ];
 
   if (authorizedStores.includes(shop)) {
     return res.status(200).json({

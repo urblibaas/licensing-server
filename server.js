@@ -24,7 +24,11 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // 2. Mock Database (Replace with your actual store domains)
-const authorizedStores = ["your-development-store.myshopify.com", "client-store.myshopify.com"];
+const authorizedStores = [
+  "your-development-store.myshopify.com",
+  "urblibaas.myshopify.com",
+  "client-store.myshopify.com",
+];
 
 // 3. Validation Route (Matches /api/validate used in Vercel)
 app.post("/api/validate", (req, res) => {
