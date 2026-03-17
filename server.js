@@ -20,11 +20,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
+app.use("/features", express.static("public/features"));
 // Mock database
 const authorizedStores = [
   "your-development-store.myshopify.com",
   "urblibaas.myshopify.com",
+  "fa7181.myshopify.com",
   "client-store.myshopify.com",
 ];
 
@@ -32,7 +33,7 @@ const authorizedStores = [
 app.post("/api/validate", (req, res) => {
   console.log("Received request body:", req.body);
   const { shop } = req.body;
-
+  const baseUrl = "https://licensing-server-six.vercel.app";
   console.log(`Checking license for: ${shop}`);
 
   if (!shop) {
@@ -46,10 +47,7 @@ app.post("/api/validate", (req, res) => {
     return res.status(200).json({
       valid: true,
       message: "License verified",
-      features: [
-        "https://your-vercel-project.vercel.app/features/mega-menu.js",
-        "https://your-vercel-project.vercel.app/features/sticky-cart.js",
-      ],
+      features: [`${baseUrl}/features/variant-picker.js`],
     });
   }
 
