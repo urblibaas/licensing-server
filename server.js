@@ -6,13 +6,7 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || origin.includes("myshopify.com") || origin.includes("localhost")) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: true,
   methods: ["POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
